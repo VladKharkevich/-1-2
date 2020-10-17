@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Faker
 {
-    class TestClassDTO
+    public class ClassDTO_B
     {
+        public DateTime dateTime;
+        public ClassDTO_C classDTO_C;
     }
 }
