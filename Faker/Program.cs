@@ -11,5 +11,5 @@ namespace Faker
             ClassDTO_A test = faker.Create<ClassDTO_A>();
             Console.WriteLine(JsonConvert.SerializeObject(test, Formatting.Indented));
         }
-    }
+    } 
 }

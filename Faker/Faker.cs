@@ -61,9 +61,8 @@ namespace Faker
                 null, types, null);
             if (constructor == null)
             {
-                constructor = type.GetConstructors(
-                    BindingFlags.Public | BindingFlags.NonPublic
-                                        | BindingFlags.Instance)[0];
+                if (type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Length != 0)
+                    constructor = type.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)[0];
             }
             return constructor;
         }
@@ -93,6 +92,10 @@ namespace Faker
             Type type = typeof(T);
             fDtoInProgress.Push(type);
             ConstructorInfo constructor = GetConstructor(type);
+            if (constructor == null)
+            {
+                return default(T);
+            }
             object[] parameters = GenerateParameters(constructor);
             object obj = constructor.Invoke(parameters);
             SetFieldsAndProperties(obj);
